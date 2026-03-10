@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
+	var router *gin.Engine = gin.Default()
+	router.SetTrustedProxies(nil)
+
+	router.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{"message": "Todo Api is running!", "status": "success"})
+	})
+
+	router.Run(":8080")
 }
