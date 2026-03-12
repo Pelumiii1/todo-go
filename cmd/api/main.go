@@ -4,6 +4,7 @@ import (
 	"log"
 	"todo_api/internal/config"
 	"todo_api/internal/database"
+	"todo_api/internal/handler"
 
 	"github.com/gin-gonic/gin"
 )
@@ -29,6 +30,7 @@ func main() {
 	router.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{"message": "Todo Api is running!", "status": "success", "database": "Database connection successful"})
 	})
+	router.POST("/todos", handler.CreateTodoHandler(pool))
 
 	router.Run(":" + cfg.Port)
 }
