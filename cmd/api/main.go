@@ -31,6 +31,8 @@ func main() {
 		c.JSON(200, gin.H{"message": "Todo Api is running!", "status": "success", "database": "Database connection successful"})
 	})
 	router.POST("/todos", handler.CreateTodoHandler(pool))
+	router.GET("/todos", handler.GetAllTodosHandler(pool))
+	router.GET("/todos/:id", handler.GetTodoByIDHandler(pool))
 
 	router.Run(":" + cfg.Port)
 }
